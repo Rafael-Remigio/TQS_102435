@@ -16,6 +16,8 @@ class BoundedSetOfNaturalsTest {
     private BoundedSetOfNaturals setA;
     private BoundedSetOfNaturals setB;
     private BoundedSetOfNaturals setC;
+    private BoundedSetOfNaturals setD;
+
 
 
     @BeforeEach
@@ -23,6 +25,7 @@ class BoundedSetOfNaturalsTest {
         setA = new BoundedSetOfNaturals(1);
         setB = BoundedSetOfNaturals.fromArray(new int[]{10, 20, 30, 40, 50, 60});
         setC = BoundedSetOfNaturals.fromArray(new int[]{50, 60});
+        setD = new BoundedSetOfNaturals(20);
     }
 
     @AfterEach
@@ -30,7 +33,6 @@ class BoundedSetOfNaturalsTest {
         setA = setB = setC = null;
     }
 
-    @Disabled("TODO revise test logic")
     @Test
     public void testAddElement() {
 
@@ -38,18 +40,45 @@ class BoundedSetOfNaturalsTest {
         assertTrue(setA.contains(99), "add: added element not found in set.");
         assertEquals(1, setA.size());
 
-        setB.add(11);
-        assertTrue(setB.contains(11), "add: added element not found in set.");
-        assertEquals(7, setB.size(), "add: elements count not as expected.");
+        assertThrows(IllegalArgumentException.class,() -> setB.add(11), "adding an element should return an exception");
+        assertEquals(6, setB.size(), "add: elements count not as expected.");
+
+        setD.add(20);
+        assertTrue(setD.contains(20), "add: added element not found in set.");
+        assertEquals(1, setA.size(), "add: elements count not as expected.");
+
+        assertThrows(IllegalArgumentException.class,() -> setD.add(-10), "adding an element should return an exception");
+        assertThrows(IllegalArgumentException.class,() -> setD.add(-10), "adding an element should return an exception");
+        assertThrows(IllegalArgumentException.class,() -> setD.add(20), "adding an element should return an exception");
+        assertEquals(1, setA.size(), "add: elements count not as expected.");
+
     }
 
-    @Disabled("TODO revise to test the construction from invalid arrays")
     @Test
     public void testAddFromBadArray() {
         int[] elems = new int[]{10, -20, -30};
 
         // must fail with exception
-        assertThrows(IllegalArgumentException.class, () -> setA.add(elems));
+        assertThrows(IllegalArgumentException.class, () -> BoundedSetOfNaturals.fromArray(elems));
+
+
+        int[] elems2 = new int[]{10, 20, 10};
+
+        // must fail with exception
+        assertThrows(IllegalArgumentException.class, () -> BoundedSetOfNaturals.fromArray(elems2));
+    }
+
+    @DisplayName("Intersection of bounded set arrays")
+    @Test
+    public void testInterction(){
+        assertTrue(setB.intersects(setC), "interction: set interction should return true but returns false");
+
+        assertFalse(setB.intersects(setD), "interction: set interction should return false in the intersection between an empty and a non empty set");
+
+        setA.add(25);
+        assertFalse(setB.intersects(setA), "interction: set interction should return false but return true");
+
+
     }
 
 
