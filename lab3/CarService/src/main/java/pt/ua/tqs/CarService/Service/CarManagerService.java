@@ -3,10 +3,12 @@ package pt.ua.tqs.CarService.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import pt.ua.tqs.CarService.DAO.Car;
 import pt.ua.tqs.CarService.DAO.CarRepository;
 
+@Service
 public class CarManagerService {
 
 

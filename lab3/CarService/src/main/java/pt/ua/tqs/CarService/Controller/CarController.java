@@ -20,8 +20,16 @@ import pt.ua.tqs.CarService.Service.CarManagerService;
 public class CarController {
     
 
-    @Autowired
-    private CarManagerService carManagerService;
+    private final CarManagerService carManagerService;
+
+    /**
+     * Using constructor Injection instead of @autowired
+     * when using a constructor to set injected properties, you do not have to provide the autowire annotation
+     * @param carManagerService
+     */
+    public CarController(CarManagerService carManagerService) {
+        this.carManagerService = carManagerService;
+    }
 
 
     @GetMapping("/car")

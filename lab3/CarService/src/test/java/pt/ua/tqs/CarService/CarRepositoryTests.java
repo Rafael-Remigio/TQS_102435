@@ -1,6 +1,5 @@
 package pt.ua.tqs.CarService;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -9,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import pt.ua.tqs.CarService.DAO.Car;
 import pt.ua.tqs.CarService.DAO.CarRepository;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,7 +28,7 @@ class CarRepositoryTests {
     private CarRepository carRepository;
 
     @Test
-    void whenFindAlexByName_thenReturnAlexEmployee() {
+    void whenfindByID_thenReturnCar() {
         // arrange a new employee and insert into db
         Car volvo = new Car("volvo", "850t5");
         entityManager.persistAndFlush(volvo); //ensure data is persisted at this point
@@ -36,6 +36,27 @@ class CarRepositoryTests {
         // test the query method of interest
         Car found = carRepository.findByCardId(volvo.getCardId());
         assertThat( found ).isEqualTo(volvo);
+    }
+
+
+    @Test
+    void whenGetAllCars_thenReturnAll() {
+        // arrange a new employee and insert into db
+        Car volvo = new Car("volvo", "850t5");
+        Car bmw = new Car("bmw", "e30");
+        Car mercedes = new Car("mercedes", "lsk");
+
+        List<Car> allCars = Arrays.asList(volvo,bmw, mercedes);
+
+        entityManager.persistAndFlush(volvo); //ensure data is persisted at this point
+        entityManager.persistAndFlush(bmw); //ensure data is persisted at this point
+        entityManager.persistAndFlush(mercedes); //ensure data is persisted at this point
+
+        List<Car> found = carRepository.findAll();
+        assertThat( found ).isEqualTo(allCars);
+
+
+
     }
 
 
