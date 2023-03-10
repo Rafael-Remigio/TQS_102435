@@ -22,7 +22,7 @@ public class CarManagerService {
     }
 
     public Car getCarDetails(long id) {
-        return carRepository.findById(id);
+        return carRepository.findByCardId(id);
     }
     
 }

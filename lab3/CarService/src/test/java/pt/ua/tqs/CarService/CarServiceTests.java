@@ -50,10 +50,10 @@ public class CarServiceTests {
 
 
 
-        Mockito.when(carRepository.findById(bmw.getCardId())).thenReturn(bmw);
-        Mockito.when(carRepository.findById(volvo.getCardId())).thenReturn(volvo);
-        Mockito.when(carRepository.findById(wrongId)).thenReturn(null);
-        Mockito.when(carRepository.findById(mercedes.getCardId())).thenReturn(mercedes);
+        Mockito.when(carRepository.findByCardId(bmw.getCardId())).thenReturn(bmw);
+        Mockito.when(carRepository.findByCardId(volvo.getCardId())).thenReturn(volvo);
+        Mockito.when(carRepository.findByCardId(wrongId)).thenReturn(null);
+        Mockito.when(carRepository.findByCardId(mercedes.getCardId())).thenReturn(mercedes);
         Mockito.when(carRepository.findAll()).thenReturn(allCars);
     
 

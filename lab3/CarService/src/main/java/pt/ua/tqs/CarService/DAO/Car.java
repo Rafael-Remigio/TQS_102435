@@ -1,20 +1,16 @@
 package pt.ua.tqs.CarService.DAO;
 
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "cars")
 public class Car {
     private static long idCache = 1;
 
+    @Id
     Long cardId;
+
     String maker;
     String Model;
 
