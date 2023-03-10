@@ -4,6 +4,8 @@
 Questions
 
 ### a) Identify a couple of examples that use AssertJ expressive methods chaining.
+* On the class **B_EmployeeService_UnitTest**, on the **given3Employees_whengetAll_thenReturn3Records** test;
+* On the class **C_EmployeeService_UnitTest.java**, on the **givenManyEmployees_whenGetEmployees_thenReturnJsonArray**test
 
 ### b) Identify an example in which you mock the behavior of the repository (and avoid involving a database). 
 In the B_EmployeeService_UnitTest test class, we create a Mock EmployeeRepository and then we Inject this Mock in into to the EmployeeServiceImpl. 
@@ -18,3 +20,6 @@ To use these properties we need to enable them by adding the following annotatio
 @TestPropertySource(locations = "application-integrationtest.properties")
 
 ### e) the sample project demonstrates three test strategies to assess an API (C, D and E) developed with SpringBoot. Which are the main/key differences? 
+In the aproach C we Mock the Service and only test it on the Controller Layer.
+On approach D we Mock the entire Spring Enviorment with a mock servlet environment.
+On approach E we actually create a web application context.
