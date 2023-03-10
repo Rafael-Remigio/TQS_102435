@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import pt.ua.tqs.CarService.Service.CarManagerService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -79,6 +81,26 @@ class IntegrationTest {
 
         assertThat(entity.getBody()).isEqualTo(getEntity.getBody());
         assertThat(entity2.getBody()).isEqualTo(getEntity2.getBody());
+
+    }
+
+
+    @Test
+     void whenGetAll() {
+        Car volvo = new Car("volvo", "850T5");
+        Car bmw = new Car("bmw", "e30");
+
+        ResponseEntity<Car> entity = restTemplate.postForEntity("/api/car", volvo, Car.class);
+        ResponseEntity<Car> entity2 = restTemplate.postForEntity("/api/car", bmw, Car.class);
+
+        ResponseEntity<List<Car>> response = restTemplate
+                .exchange("/api/car", HttpMethod.GET, null, new ParameterizedTypeReference<List<Car>>() {
+                });
+
+        List<Car> allCars = Arrays.asList(volvo,bmw);
+
+
+        assertThat(response.getBody()).isEqualTo(allCars);
 
     }
 
