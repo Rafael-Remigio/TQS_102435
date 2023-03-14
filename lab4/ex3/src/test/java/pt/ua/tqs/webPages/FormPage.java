@@ -1,6 +1,9 @@
 package pt.ua.tqs.webPages;
 
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,9 +14,6 @@ import org.openqa.selenium.support.ui.Select;
 
 public class FormPage {
    private WebDriver driver;
-
-   //Page URL
-   private static String PAGE_URL="https://blazedemo.com/purchase.php";
 
    //Locators
 
@@ -51,10 +51,10 @@ public class FormPage {
 
     //Constructor
    public FormPage(WebDriver driver){
-       this.driver=driver;
-       driver.get(PAGE_URL);
-       //Initialise Elements
-       PageFactory.initElements(driver, this);
+    this.driver=driver;
+
+    //Initialise Elements
+    PageFactory.initElements(driver, this);
    }
 
 
@@ -108,5 +108,11 @@ public class FormPage {
     public void setNameOnCard(String nameOnCardString){
         nameOnCard.clear();
         nameOnCard.sendKeys(nameOnCardString);
+    }
+
+    public void clickButton(){
+        List<WebElement> elements = driver.findElements(By.tagName("form"));   
+        WebElement form = elements.get(0);
+        form.submit();
     }
 }

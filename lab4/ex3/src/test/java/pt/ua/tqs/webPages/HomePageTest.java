@@ -26,7 +26,7 @@ public class HomePageTest {
     private WebElement toSelect;
 
    //Find Flights Button
-   @FindBy(how = How.LINK_TEXT, using = "Find Flights")
+   @FindBy(how = How.TAG_NAME, using = "input")
    private WebElement FindButton;
 
    //Constructor
