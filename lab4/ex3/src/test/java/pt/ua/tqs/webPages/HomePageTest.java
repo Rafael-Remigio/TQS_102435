@@ -13,7 +13,7 @@ public class HomePageTest {
    private WebDriver driver;
 
    //Page URL
-   private static String PAGE_URL="https://www.toptal.com";
+   private static String PAGE_URL="https://blazedemo.com/";
 
    //Locators
 
@@ -37,7 +37,7 @@ public class HomePageTest {
        PageFactory.initElements(driver, this);
    }
 
-   public void clickOnDeveloperApplyButton(){
+   public void clickOnFindButton(){
 
         FindButton.click();
 
@@ -51,7 +51,7 @@ public class HomePageTest {
 
 
     public void select_list_To(String to){
-        Select statusDropdown=new Select(fromSelect);
+        Select statusDropdown=new Select(toSelect);
         statusDropdown.selectByVisibleText(to);
     }
 }
