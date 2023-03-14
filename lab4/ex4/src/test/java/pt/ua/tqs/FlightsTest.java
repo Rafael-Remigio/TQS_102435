@@ -9,6 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import io.github.bonigarcia.seljup.BrowserType;
+import io.github.bonigarcia.seljup.DockerBrowser;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 import pt.ua.tqs.webPages.ChoosePage;
 import pt.ua.tqs.webPages.ConfirmationPage;
@@ -21,18 +23,12 @@ import java.util.concurrent.TimeUnit;
 
 @ExtendWith(SeleniumJupiter.class)
 public class FlightsTest {
-  WebDriver driver;
-
-  @BeforeEach
-  public void setup(){
-      //use FF Driver
-      driver = new FirefoxDriver();
-      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-  }
 
   @Test
-  public void newTest() throws InterruptedException {
+  public void TestFligths(@DockerBrowser(type = BrowserType.FIREFOX) WebDriver driver) throws InterruptedException {
       //Create object of HomePage Class
+      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
       HomePageTest home = new HomePageTest(driver);
 
       home.select_list_From("Portland");
@@ -65,11 +61,9 @@ public class FlightsTest {
       
       confirmationPage.assertTitle("BlazeDemo Confirmation");
 
+
+      driver.close();
       return;
   }
 
-   @AfterEach
-   public void close(){
-         driver.close();
-      }
   }
