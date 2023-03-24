@@ -15,6 +15,6 @@ import org.junit.platform.suite.api.Suite;
 @SelectClasspathResource("pt/ua/tqs")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "pt.ua.tqs")
-public class Cucumber {
+public class CucumberTest {
 
 }

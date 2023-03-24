@@ -30,9 +30,9 @@ public class HomePageTest {
    private WebElement FindButton;
 
    //Constructor
-   public HomePageTest(WebDriver driver){
+   public HomePageTest(WebDriver driver, String urlString){
        this.driver=driver;
-       driver.get(PAGE_URL);
+       driver.get(urlString);
        //Initialise Elements
        PageFactory.initElements(driver, this);
    }
