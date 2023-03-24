@@ -33,3 +33,26 @@ mvn verify sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.projectKey
 |Code Smell (major)|Remove this 'public' modifier.|JUnit5 test classes and methods should have default package visibility; <br> <br>In this context, JUnit5 test classes can have any visibility but private, however, it is recommended to use the default package visibility, which improves readability of code.<br><br> We can just remove the public from the test classes|
 
 
+# ex2 
+
+### token for Car Service project
+```
+sqp_71cb847aad3b659fc6ace92f3ae3b07c53d88548
+```
+### a)
+<img src="images/CarService.png">
+
+<img src="images/CarService_Debt.png">
+
+
+**From the SonarCube Documentation**
+
+**Technical debt**: A measure of effort to fix all code smells. The measure is stored in minutes in the database.
+
+**Technical debt on new code**: a measure of effort required to fix all code smells raised for the first time on new code.
+
+**Technical debt ratio**: The ratio between the cost to develop the software and the cost to fix it. The Technical Debt Ratio formula is: Remediation cost / Development cost
+Which can be restated as: Remediation cost / (Cost to develop 1 line of code * Number of lines of code)
+The value of the cost to develop a line of code is 0.06 days.
+
+**Technical debt ratio on new code**: The ratio between the cost to develop the code changed on new code and the cost of the issues linked to it.
