@@ -6,21 +6,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "cars")
 public class Car {
-    private static long idCache = 1;
 
     @Id
-    Long cardId;
+    Long cardId ;
 
     String maker;
     String Model;
 
     public Car() {
-        cardId = idCache;
-        idCache +=1;
+        cardId = IdProvider.getInstance().getUniqueId();
     }
     public Car(String maker, String model) {
-        cardId = idCache;
-        idCache +=1;
+        cardId = IdProvider.getInstance().getUniqueId();
         this.maker = maker;
         Model = model;
     }
@@ -34,7 +31,6 @@ public class Car {
 
     public Car(CarDTO car) {
         cardId = car.cardId;
-        idCache +=1;
         this.maker = car.maker;
         Model = car.Model;
     }

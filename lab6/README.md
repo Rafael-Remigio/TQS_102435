@@ -37,7 +37,7 @@ mvn verify sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.projectKey
 
 ### token for Car Service project
 ```
-sqp_71cb847aad3b659fc6ace92f3ae3b07c53d88548
+sqp_a93485df4df1f268c7c536107d72a7daf6cdc912
 ```
 ### a)
 <img src="images/CarService.png">
@@ -56,3 +56,28 @@ Which can be restated as: Remediation cost / (Cost to develop 1 line of code * N
 The value of the cost to develop a line of code is 0.06 days.
 
 **Technical debt ratio on new code**: The ratio between the cost to develop the code changed on new code and the cost of the issues linked to it.
+
+
+### b) two major code smells.
+*   **Incrementing a static value in the constructor** - to solve this I intruduced an IdProvider following the Singleton Design Pattern
+* **Persistent entities should not be used as arguments** - I created a DTO (Data transfer object) object
+
+
+### d) Code Coverage
+
+<img src="images/CarServiceCoverage.png">
+
+
+# ex3 - LogiPack
+
+**token**
+```
+sqp_8c23df30a7d27136af41fb54d15527a7293fc3f4
+```
+
+## Quality Gate for LogiPack
+
+<img src="images/QualityGate.png">
+
+
+

@@ -2,7 +2,6 @@ package pt.ua.tqs.CarService.DAO;
 
 
 public class CarDTO {
-    private static long idCache = 1;
 
 
     public long getCardId() {
@@ -24,12 +23,10 @@ public class CarDTO {
         Model = model;
     }
     public CarDTO() {
-        cardId = idCache;
-        idCache +=1;
+        cardId = IdProvider.getInstance().getUniqueId();
     }
     public CarDTO(String maker, String model) {
-        cardId = idCache;
-        idCache +=1;
+        cardId = IdProvider.getInstance().getUniqueId();
         this.maker = maker;
         Model = model;
     }

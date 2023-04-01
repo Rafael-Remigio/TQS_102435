@@ -1,4 +1,4 @@
-package pt.ua.tqs.OpenAir;
+package pt.ua.tqs.openair;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

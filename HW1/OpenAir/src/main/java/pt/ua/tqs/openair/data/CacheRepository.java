@@ -1,8 +1,9 @@
-package pt.ua.tqs.OpenAir.Data;
+package pt.ua.tqs.openair.data;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pt.ua.tqs.OpenAir.Data.Model.Location;
+
+import pt.ua.tqs.openair.data.model.Location;
 
 
 @Repository

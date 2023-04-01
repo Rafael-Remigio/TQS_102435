@@ -1,4 +1,4 @@
-package pt.ua.tqs.OpenAir.Data;
+package pt.ua.tqs.openair.data;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
