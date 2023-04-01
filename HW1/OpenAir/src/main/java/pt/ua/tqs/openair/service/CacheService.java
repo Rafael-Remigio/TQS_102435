@@ -24,26 +24,36 @@ public class CacheService {
         return info;
     }
 
-    public Optional<Location> getLocation(String locationAddress){
+    public Location getLocation(String locationAddress){
 
-        Optional<Location> location =  cacheRepository.findById(locationAddress);
-        
-        if (location != null){
-            info.setMisses(info.getMisses() + 1);
-        }
-        else {
-            info.setAcesses(info.getAcesses() + 1);
-        }
+            Optional<Location> location = cacheRepository.findById(locationAddress);
 
+            incrementAccesses();
+
+            if (location.isPresent()){
+                incrementHits();
+                return location.get();
+            }
+            else {
+                incrementMisses();
+                return null;
+            }
+    }
+
+    private void incrementMisses() {
+        info.setMisses(info.getMisses() + 1);
+    }
+
+    private void incrementHits() {
+        info.setHits(info.getHits() + 1);
+    }
+
+    private void incrementAccesses() {
         info.setAcesses(info.getAcesses() + 1);
-
-        return location;
     }
 
     public void postLocation(Location location){
-
         cacheRepository.save(location);
-
     }
 
 

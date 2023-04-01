@@ -14,3 +14,8 @@ https://opencagedata.com/dashboard#geocoding
 ```
 sqp_7e2441613c8707c0af517c72fb42bd9bc3481a21
 ```
+
+#Redis Database
+```
+docker run --name my-redis-container -p 6379:6379 -d redis
+```
