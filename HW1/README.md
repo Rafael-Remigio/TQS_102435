@@ -4,11 +4,11 @@
 
 # API 
 * OpenWeather https://openweathermap.org/api/air-pollution seems pretty good for this porpuse
+* Geocoding API https://docs.mapbox.com/help/getting-started/access-tokens/ https://opencagedata.com/dashboard#geocoding
+
 
 # Frontend 
-Geocoding API https://docs.mapbox.com/help/getting-started/access-tokens/
-https://opencagedata.com/dashboard#geocoding
-
+very basic react App
 
 # SonarQube
 ```
