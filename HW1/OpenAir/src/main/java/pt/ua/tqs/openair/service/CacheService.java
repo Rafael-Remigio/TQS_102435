@@ -32,7 +32,8 @@ public class CacheService {
 
             if (location.isPresent()){
                 incrementHits();
-                return location.get();
+                System.out.println(location);
+                return null;
             }
             else {
                 incrementMisses();

@@ -16,8 +16,8 @@ public class Location {
 
     
 
-    public Location(String location, Coords coords, Stats stats) {
-        this.address = location;
+    public Location(String address, Coords coords, Stats stats) {
+        this.address = address;
         this.coords = coords;
         this.stats = stats;
     }
