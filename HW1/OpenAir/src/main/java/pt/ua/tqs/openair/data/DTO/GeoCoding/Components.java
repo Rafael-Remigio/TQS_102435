@@ -1,4 +1,4 @@
-package pt.ua.tqs.openair.data.DTO;
+package pt.ua.tqs.openair.data.DTO.GeoCoding;
 
 import java.util.ArrayList;
 

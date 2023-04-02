@@ -1,20 +1,17 @@
 package pt.ua.tqs.openair.data.model;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 @RedisHash(timeToLive = 60L)
 public class Location {
 
-
-
     @Id
     private String address;
 
     private Coords coords;
-    
-    private Stats stats;
 
-    
+    private Stats stats;
 
     public Location(String address, Coords coords, Stats stats) {
         this.address = address;
@@ -45,5 +42,5 @@ public class Location {
     public void setStats(Stats stats) {
         this.stats = stats;
     }
-    
+
 }
