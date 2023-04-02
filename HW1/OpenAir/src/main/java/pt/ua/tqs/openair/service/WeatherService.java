@@ -62,7 +62,7 @@ public class WeatherService {
 
         AirQualityDTO airQualityDTO = restTemplate.getForObject(url, AirQualityDTO.class);
 
-        Components components = airQualityDTO.list.get(0).components;
+        Components components = airQualityDTO.list[0].components;
         
         Stats stats = new Stats(components.co, components.no2, components.pm2_5, components.pm10);
         return stats;
@@ -75,7 +75,7 @@ public class WeatherService {
         GeocodingDTO geocodingObj = restTemplate.getForObject(url, GeocodingDTO.class);
  
         Northeast APIcoords = geocodingObj.results.get(0).bounds.northeast;
-
+         
         Coords coords = new Coords(APIcoords.lat, APIcoords.lng);
         return coords;
     }
