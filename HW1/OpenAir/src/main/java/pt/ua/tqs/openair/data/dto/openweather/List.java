@@ -1,4 +1,4 @@
-package pt.ua.tqs.openair.data.DTO.OpenWeather;
+package pt.ua.tqs.openair.data.dto.openweather;
 
 public class List{
     public int dt;

@@ -1,20 +1,24 @@
 package pt.ua.tqs.openair.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import pt.ua.tqs.openair.data.DTO.GeoCoding.GeocodingDTO;
-import pt.ua.tqs.openair.data.DTO.GeoCoding.Northeast;
-import pt.ua.tqs.openair.data.DTO.OpenWeather.AirQualityDTO;
-import pt.ua.tqs.openair.data.DTO.OpenWeather.Components;
+import pt.ua.tqs.openair.data.dto.geocoding.GeocodingDTO;
+import pt.ua.tqs.openair.data.dto.geocoding.Northeast;
+import pt.ua.tqs.openair.data.dto.openweather.AirQualityDTO;
+import pt.ua.tqs.openair.data.dto.openweather.Components;
 import pt.ua.tqs.openair.data.model.Coords;
 import pt.ua.tqs.openair.data.model.Location;
 import pt.ua.tqs.openair.data.model.Stats;
 
 @Service
 public class WeatherService {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(WeatherService.class);
 
     @Autowired
     CacheService cacheService;
@@ -34,7 +38,6 @@ public class WeatherService {
     @Value("${app.openWeatherApiKey}")
     private String openWeatherApiKey;
 
-
     public Location getWeather(String local) {
 
         Location location = cacheService.getLocation(local);
@@ -45,7 +48,21 @@ public class WeatherService {
 
             Coords coords = getLocationCoords(local);
 
+            if (coords == null) {
+
+                LOGGER.error("GeoLocation API did not respond");
+
+                return null;
+            }
+
             Stats stats = getAirQualityStats(coords);
+
+            if (stats == null) {
+
+                LOGGER.error("OpenWeather Air Quality API did not respond");
+
+                return null;
+            }
 
             location = new Location(local, coords, stats);
 
@@ -58,26 +75,42 @@ public class WeatherService {
     }
 
     private Stats getAirQualityStats(Coords coords) {
-        String url = openWeatherUrl + "lat="+coords.getLat()+"&lon="+coords.getLgn()+"&appid="+openWeatherApiKey;
+        String url = openWeatherUrl + "lat=" + coords.getLat() + "&lon=" + coords.getLgn() + "&appid="
+                + openWeatherApiKey;
+        try {
+            AirQualityDTO airQualityDTO = restTemplate.getForObject(url, AirQualityDTO.class);
+            if (airQualityDTO == null) {
+                return null;
+            }
 
-        AirQualityDTO airQualityDTO = restTemplate.getForObject(url, AirQualityDTO.class);
+            Components components = airQualityDTO.list[0].components;
 
-        Components components = airQualityDTO.list[0].components;
-        
-        Stats stats = new Stats(components.co, components.no2, components.pm2_5, components.pm10);
-        return stats;
+            Stats stats = new Stats(components.co, components.no2, components.pm2_5, components.pm10);
+            return stats;
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     private Coords getLocationCoords(String local) {
-        
-        String url = geoCodingUrl + local +"&key="+ geoCodingApiKey +"&pretty=1&no_annotations=1&limit=1";
 
+        String url = geoCodingUrl + local + "&key=" + geoCodingApiKey + "&pretty=1&no_annotations=1&limit=1";
+        try {
         GeocodingDTO geocodingObj = restTemplate.getForObject(url, GeocodingDTO.class);
- 
+
+        if (geocodingObj == null) {
+            return null;
+        }
+
         Northeast APIcoords = geocodingObj.results.get(0).bounds.northeast;
-         
+
         Coords coords = new Coords(APIcoords.lat, APIcoords.lng);
         return coords;
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 
     private boolean locationPresentInCache(Location location) {

@@ -4,12 +4,13 @@
 \contentsline {section}{\numberline {2}Product specification}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Functional scope and supported interactions }{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}System architecture}{2}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}API for developers}{3}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Quality assurance}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Overall strategy for testing}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Unit and integration testing}{3}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Functional testing}{3}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Code quality analysis}{3}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Continuous integration pipeline}{3}{subsection.3.5}%
+\contentsline {subsection}{\numberline {2.3}API for developers}{2}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Quality assurance}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Logging}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Overall strategy for testing}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Unit and integration testing}{3}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Functional testing}{3}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Code quality analysis}{3}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Continuous integration pipeline}{3}{subsection.3.6}%
 \contentsline {section}{\numberline {4}References \& resources}{3}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Reference materials}{3}{subsection.4.1}%

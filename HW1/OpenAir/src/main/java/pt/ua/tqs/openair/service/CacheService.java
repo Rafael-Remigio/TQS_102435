@@ -10,9 +10,13 @@ import pt.ua.tqs.openair.data.model.Info;
 import pt.ua.tqs.openair.data.model.Location;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 public class CacheService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(CacheService.class);
 
 
     @Autowired
@@ -31,11 +35,16 @@ public class CacheService {
             incrementAccesses();
 
             if (location.isPresent()){
+
+                LOGGER.debug("Cache Hit: Location Object was Found");
+
                 incrementHits();
-                System.out.println(location);
-                return null;
+                return location.get();
             }
             else {
+
+                LOGGER.debug("Cache Miss: Location Object was NOT Found");
+
                 incrementMisses();
                 return null;
             }
@@ -54,6 +63,9 @@ public class CacheService {
     }
 
     public void postLocation(Location location){
+
+        LOGGER.info("Cache Updated: New Location Object was added to Cache");
+
         cacheRepository.save(location);
     }
 

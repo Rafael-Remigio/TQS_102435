@@ -1,4 +1,4 @@
-package pt.ua.tqs.openair.data.DTO.GeoCoding;
+package pt.ua.tqs.openair.data.dto.geocoding;
 
 public class Timestamp{
     public String created_http;

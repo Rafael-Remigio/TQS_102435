@@ -3,28 +3,33 @@ import './App.css';
 import {useRef} from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route} from "react-router-dom";
-import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table';
 
 function App() {
 
+
+  const [stats, setStats] = useState(null);
+
   const inputRef = useRef(null);
-  const Latitude = useRef(null);
-  const Longitude = useRef(null);
-
-
-  const apiKey = process.env.REACT_APP_API_KEY
 
   const handleSubmit = (event) => {
-    var url = "https://api.opencagedata.com/geocode/v1/json?key="+apiKey+"&q=";
+
+    var url = "http://localhost:8080/weather?local="+inputRef.current.value;
     console.log(url)
-    window.location.replace('/results&location='+inputRef.current.value);    
 
-    event.preventDefault();
-  }
 
-  const handleSubmitCoord = (event) => {
-    window.location.replace('/results&lat='+Latitude.current.value+"&lng="+Longitude.current.value);    
+    axios.get(url)
+        .then(response => {
+
+            const data = response.data;
+            setStats(data)
+
+        })
+        .catch(error => {
+            setStats(null)
+            console.error('There was an error!', error);
+            alert("Service Unavailable, try again later")
+        });
 
     event.preventDefault();
   }
@@ -46,63 +51,57 @@ function App() {
           </label>
           <input type="submit" value="Submit" />
         </form>
-
-        <h4>Search the weather for a specific location with coordinates</h4>
-        <form onSubmit={handleSubmitCoord}>
-          <Row>
-            <label>
-              Latitude:
-              <input ref={Latitude} id="location" type="text" name="name" />
-            </label>
-          </Row>
-          <Row>
-            <label>
-              Longitude:
-              <input ref={Longitude} id="location" type="text" name="name" />
-            </label>
-          </Row>
-          <input type="submit" value="Submit" />
-        </form>
+        <Results />
       </header>
+        
     </div>
   )
   };
   const Results = () =>{
 
-
-    const fetchData = (event) => {
-      /*var url = "https://api.opencagedata.com/geocode/v1/json?key="+apiKey+"&q=";
-      console.log(url)
-      window.location.replace('/results&location='+inputRef.current.value);    
-  
-      event.preventDefault();*/
+    if (stats!= null){
+      return (
+        <div>
+          <h3>
+            Results for {stats.location}
+          </h3>
+          <Table striped bordered hover size="sm">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CO</td>
+                <td>{stats.stats.co}</td>
+              </tr>
+              <tr>
+                <td>NO2</td>
+                <td>{stats.stats.no2}</td>
+              </tr>
+              <tr>
+                <td>PM25</td>
+                <td>{stats.stats.pm25}</td>
+              </tr>
+              <tr>
+                <td>PM10</td>
+                <td>{stats.stats.pm10}</td>
+              </tr>
+            </tbody>
+          </Table>  
+        </div>
+      )
     }
-
-    return (
-      <div>
-        <h1>
-          Results
-
-        </h1>
-      </div>
-    )
+    return <div></div>
   };
 
 
-  return (    
-  <BrowserRouter>
-    <Routes>
-      <Route
-        path="/"
-        element={<Home />}
-      />
-      <Route
-        path="results/:id"
-        element={<Results />}
-      />
-    </Routes>
-  </BrowserRouter>
-
+  return (   
+    <div>
+      <Home />
+    </div> 
   );
 
 
