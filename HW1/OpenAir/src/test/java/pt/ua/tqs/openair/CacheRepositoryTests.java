@@ -13,6 +13,7 @@ import pt.ua.tqs.openair.data.model.Location;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
+//@DataJpaTest
 class CacheRepositoryTests {
 
     // get a test-friendly Entity Manager
@@ -22,6 +23,7 @@ class CacheRepositoryTests {
     @Autowired
     private CacheRepository cacheRepository;
 
+    //@Test
     void whenfindByID_thenReturnCar() {
         // arrange a new employee and insert into db
         Location paris = new Location("Paris", null, null);
