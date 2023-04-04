@@ -20,7 +20,7 @@ public class CacheService {
     @Autowired
     CacheRepository cacheRepository;
 
-    static final Info info = new Info(0, 0, 0);
+    public static final Info info = new Info(0, 0, 0);
 
     public Info getCacheInfo() {
         return info;
