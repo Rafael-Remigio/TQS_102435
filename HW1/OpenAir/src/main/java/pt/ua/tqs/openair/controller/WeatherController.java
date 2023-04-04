@@ -44,7 +44,7 @@ public class WeatherController {
         } 
         catch (LocationNotFoundException exc) {
             throw new ResponseStatusException(
-              HttpStatus.NOT_FOUND, "Foo Not Found", exc);
+              HttpStatus.NOT_FOUND, "Location or Address Not Found", exc);
         }
 
     }

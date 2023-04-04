@@ -4,4 +4,6 @@ public class List{
     public int dt;
     public Main main;
     public Components components;
+
+    public List(){};
 }

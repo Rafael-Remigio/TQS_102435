@@ -93,7 +93,7 @@ public class WeatherService {
 
     }
 
-    private Coords getLocationCoords(String local) {
+    public Coords getLocationCoords(String local) {
 
         String url = geoCodingUrl + local + "&key=" + geoCodingApiKey + "&pretty=1&no_annotations=1&limit=1";
         try {

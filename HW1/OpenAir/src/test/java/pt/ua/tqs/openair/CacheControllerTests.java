@@ -57,5 +57,13 @@ public class CacheControllerTests {
     }
 
     
+    @Test
+        public void testGetCacheInfo_Error() throws Exception {
+            
+            when(cacheService.getCacheInfo()).thenReturn(null);
+    
+            mockMvc.perform(get("/cacheInfo"))
+                    .andExpect(status().isNotFound());
+        }
 
 }
