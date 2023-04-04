@@ -19,6 +19,10 @@ public class Location {
         this.stats = stats;
     }
 
+    public Location(){
+        
+    }
+
     public String getLocation() {
         return address;
     }

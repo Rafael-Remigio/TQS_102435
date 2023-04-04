@@ -9,45 +9,48 @@ import pt.ua.tqs.openair.data.CacheRepository;
 import pt.ua.tqs.openair.data.model.Info;
 import pt.ua.tqs.openair.data.model.Location;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Service
 public class CacheService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CacheService.class);
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(CacheService.class);
 
     @Autowired
     CacheRepository cacheRepository;
 
     static final Info info = new Info(0, 0, 0);
-    
-    public Info getCacheInfo(){
+
+    public Info getCacheInfo() {
         return info;
     }
 
-    public Location getLocation(String locationAddress){
-
+    public Location getLocation(String locationAddress) {
+        try {
             Optional<Location> location = cacheRepository.findById(locationAddress);
 
             incrementAccesses();
 
-            if (location.isPresent()){
+            if (location.isPresent()) {
 
                 LOGGER.debug("Cache Hit: Location Object was Found");
 
                 incrementHits();
                 return location.get();
-            }
-            else {
+            } else {
 
                 LOGGER.debug("Cache Miss: Location Object was NOT Found");
 
                 incrementMisses();
                 return null;
             }
+            
+        } catch (Exception e) {
+            LOGGER.error("Cache Failure: failed accessing cache" + e.toString());
+
+            return null;
+        }
     }
 
     private void incrementMisses() {
@@ -62,12 +65,21 @@ public class CacheService {
         info.setAcesses(info.getAcesses() + 1);
     }
 
-    public void postLocation(Location location){
+    public void postLocation(Location location) {
 
-        LOGGER.info("Cache Updated: New Location Object was added to Cache");
+        try {
+            
+            cacheRepository.save(location);
+            LOGGER.info("Cache Updated: New Location Object was added to Cache");
 
-        cacheRepository.save(location);
+        } catch (Exception e) {
+
+            LOGGER.error("Cache failed: Failed adding to Cache");
+
+
+
+        }
+
     }
-
 
 }

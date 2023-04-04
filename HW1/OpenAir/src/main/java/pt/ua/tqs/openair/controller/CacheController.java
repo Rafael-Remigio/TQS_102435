@@ -12,21 +12,17 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 public class CacheController {
-    
-    private static final Logger LOGGER = LoggerFactory.getLogger(CacheController.class);
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CacheController.class);
 
     @Autowired
     CacheService cacheService;
 
     @GetMapping("/cacheInfo")
-    public Info getCacheInfo(
-    ) {
-        LOGGER.info("Received a cache information request");
-        return cacheService.getCacheInfo();
+    public Info getCacheInfo() {
+        LOGGER.debug("Received a cache information request");
+        Info info = cacheService.getCacheInfo();
+        return info;
     }
-
-
-
 
 }
