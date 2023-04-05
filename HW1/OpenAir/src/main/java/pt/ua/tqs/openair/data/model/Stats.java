@@ -41,6 +41,42 @@ public class Stats {
         this.pm10 = pm10;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        long temp;
+        temp = Double.doubleToLongBits(co);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(no2);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(pm25);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(pm10);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Stats other = (Stats) obj;
+        if (Double.doubleToLongBits(co) != Double.doubleToLongBits(other.co))
+            return false;
+        if (Double.doubleToLongBits(no2) != Double.doubleToLongBits(other.no2))
+            return false;
+        if (Double.doubleToLongBits(pm25) != Double.doubleToLongBits(other.pm25))
+            return false;
+        if (Double.doubleToLongBits(pm10) != Double.doubleToLongBits(other.pm10))
+            return false;
+        return true;
+    }
+
     
     
 }

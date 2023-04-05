@@ -32,5 +32,33 @@ public class Info {
         this.acesses = acesses;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (hits ^ (hits >>> 32));
+        result = prime * result + (int) (misses ^ (misses >>> 32));
+        result = prime * result + (int) (acesses ^ (acesses >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Info other = (Info) obj;
+        if (hits != other.hits)
+            return false;
+        if (misses != other.misses)
+            return false;
+        if (acesses != other.acesses)
+            return false;
+        return true;
+    }
+
     
 }
