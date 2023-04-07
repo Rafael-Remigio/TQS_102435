@@ -4,6 +4,7 @@
 
 \usepackage{hyperref}
 
+\usepackage{listings}
 \usepackage[margin=1.25in]{geometry}
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
@@ -80,25 +81,71 @@ The WebApp provides two use cases:
 
 \subsubsection{Technologies and API's Used}
 
+The very basic User Interface was constructed using ReactJS. It interacts with the Backedn througth a RestAPI. The backend was built using Spring Boot. For an in memory database I used Redis. The Geolocation Api chosen was Open Cage. The primary Air Quality API is the OpenWeather API. The backup Air Quality API is the OpenMeteo API.
+
 \includegraphics[scale=.4]{TechFrameworks.png}
 
-\subsection{API for developers}
+
+
+\subsection{API}
+
+The API has two endpoints:
+
+\begin{enumerate}
+	
+	\item \textbf{GET} /weather?local=\textit{\{local\}} \\
+	Query Params: 
+	\begin{itemize}
+			\item \textbf{Required} - local: Address, Country or City .
+	\end{itemize}
+		
+	
+	Response Body: \\ 
+	\begin{lstlisting}
+	{
+	 "coords":{
+	 	"lat":40.7275536,
+	 	"lgn":-8.5209649
+	 	},
+	 "stats":{
+	 	"co":150.0,
+	 	"no2":6.5,
+	 	"pm25":9.4,
+	 	"pm10":11.5
+	 	},
+	 "location":"aveiro"
+	}
+	\end{lstlisting}
+	
+	
+	\item \textbf{GET} /cacheInfo\\
+	Response Body: \\
+	\begin{lstlisting}
+		{
+		"hits":5,
+		"misses":10,
+		"acesses":15
+		}
+		
+	\end{lstlisting}
+
+\end{enumerate}
 
 \section{Quality assurance}
 
 \subsection{Logging}
 
-Logging is a crucial aspect of software development that plays a vital role in supporting production and debugging activities. 
-
-Logging was conducted using the slf4j Logger class has it provides an easy integration with the Spring Boot Application.
-
-Each log message contains a timestamp, method invocation details, custom log messages, and other contextual data. Additionally, each log entry is assigned a logging level identifier, providing a way to categorize and prioritize log entries based on their significance.
-
+Logging is a crucial aspect of software development that plays a vital role in supporting production and debugging activities. \\
+Logging was conducted using the slf4j Logger class has it provides an easy integration with the Spring Boot Application.\\
+Each log message contains a timestamp, method invocation details, custom log messages, and other contextual data. Additionally, each log entry is assigned a logging level identifier, providing a way to categorize and prioritize log entries based on their significance.\\
 I followed logging principles and best practices - such as: logging at the correct evel, providing meaningfull messages, etc - in order to provide meaningfull logs.
 
 \subsection{Overall strategy for testing}
 
+
 \subsection{Unit and integration testing}
+
+implemented and 
 
 \subsection{Functional testing}
 

@@ -5,14 +5,14 @@
 \contentsline {subsection}{\numberline {2.1}Functional scope and supported interactions }{1}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}System architecture}{2}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}Architecture}{2}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Technologies and API's Used}{3}{subsubsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.3}API for developers}{3}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Quality assurance}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Logging}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Overall strategy for testing}{3}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Unit and integration testing}{3}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Functional testing}{3}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Code quality analysis}{3}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {2.2.2}Technologies and API's Used}{2}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}API}{3}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Quality assurance}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Logging}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Overall strategy for testing}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Unit and integration testing}{4}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Functional testing}{4}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Code quality analysis}{4}{subsection.3.5}%
 \contentsline {subsection}{\numberline {3.6}Continuous integration pipeline}{4}{subsection.3.6}%
 \contentsline {section}{\numberline {4}References \& resources}{4}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Reference materials}{4}{subsection.4.1}%
