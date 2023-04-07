@@ -97,6 +97,7 @@ public class WeatherService {
 
         String url = geoCodingUrl + local + "&key=" + geoCodingApiKey + "&pretty=1&no_annotations=1&limit=1";
         try {
+        LOGGER.debug("getting geolocation from "+ url);
         GeocodingDTO geocodingObj = restTemplate.getForObject(url, GeocodingDTO.class);
 
         if (geocodingObj == null) {
@@ -109,6 +110,7 @@ public class WeatherService {
         return coords;
         }
         catch (Exception e) {
+            LOGGER.error(e.toString() + url);
             return null;
         }
     }

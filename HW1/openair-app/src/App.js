@@ -9,6 +9,7 @@ function App() {
 
 
   const [stats, setStats] = useState(null);
+  const [cacheInfo, setCache] = useState(null);
 
   const inputRef = useRef(null);
 
@@ -23,10 +24,36 @@ function App() {
 
             const data = response.data;
             setStats(data)
+            setCache(null)
 
         })
         .catch(error => {
             setStats(null)
+            setCache(null)
+            console.error('There was an error!', error);
+            alert("Service Unavailable, try again later")
+        });
+
+    event.preventDefault();
+  }
+
+  const handleCacheRequest = (event) => {
+
+    var url = "http://localhost:8080/cacheInfo";
+    console.log(url)
+
+
+    axios.get(url)
+        .then(response => {
+
+            const data = response.data;
+            setCache(data)
+            setStats(null)
+
+        })
+        .catch(error => {
+            setStats(null)
+            setCache(null)
             console.error('There was an error!', error);
             alert("Service Unavailable, try again later")
         });
@@ -41,6 +68,7 @@ function App() {
       <header className="App-header">
         <div>
           <h2>Open-Air</h2>
+          <h4>Get cache details  <button onClick={handleCacheRequest}>Click Me</button></h4>
           <h4>Search the weather for a specific addres</h4>
         </div>
 
@@ -51,6 +79,7 @@ function App() {
           </label>
           <input type="submit" value="Submit" />
         </form>
+
         <Results />
       </header>
         
@@ -63,9 +92,10 @@ function App() {
       return (
         <div>
           <h3>
-            Results for {stats.location}
+            Results for {stats.location} ({stats.coords.lat},{stats.coords.lgn})
           </h3>
-          <Table striped bordered hover size="sm">
+          <center >
+          <Table striped bordered hover size="sm" cellPadding={"15px"} style={{textAlign: 'center'}}>
             <thead>
               <tr>
                 <th>#</th>
@@ -90,10 +120,21 @@ function App() {
                 <td>{stats.stats.pm10}</td>
               </tr>
             </tbody>
-          </Table>  
+          </Table> 
+          </center> 
         </div>
       )
     }
+
+    if (cacheInfo != null){
+      return <div>
+              <h5>Cache Info</h5>
+              <p>Accesses: {cacheInfo.acesses}</p>
+              <p>Hits: {cacheInfo.hits}</p>
+              <p>Misses: {cacheInfo.misses}</p>
+            </div>
+    }
+
     return <div></div>
   };
 

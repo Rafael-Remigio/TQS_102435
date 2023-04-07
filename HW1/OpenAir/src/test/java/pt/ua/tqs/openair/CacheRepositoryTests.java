@@ -2,10 +2,12 @@ package pt.ua.tqs.openair;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisOperations;
 
 import pt.ua.tqs.openair.data.CacheRepository;
@@ -25,6 +27,15 @@ class CacheRepositoryTests {
     @Autowired
     private CacheRepository cacheRepository;
 
+
+    @BeforeEach
+	void setUp() {
+
+		operations.execute((RedisConnection connection) -> {
+			cacheRepository.deleteAll();
+            return "OK";
+		});
+	}
 
     @Test
     @DisplayName("Test findById and test TTL")

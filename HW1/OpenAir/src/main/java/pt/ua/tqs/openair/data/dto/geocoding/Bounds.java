@@ -4,8 +4,4 @@ public class Bounds{
     public Northeast northeast;
     public Southwest southwest;
 
-    public Bounds(Northeast northeast ) {
-        this.northeast = northeast;
-    }
-
 }

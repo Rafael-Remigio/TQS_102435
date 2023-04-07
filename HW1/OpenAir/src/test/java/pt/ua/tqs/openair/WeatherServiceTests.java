@@ -85,7 +85,8 @@ public class WeatherServiceTests {
         GeocodingDTO geocodingDTO = new GeocodingDTO();
 
         Result resultDTO = new Result();
-        resultDTO.bounds = new Bounds(new Northeast(50,50) );
+        resultDTO.bounds = new Bounds();
+        resultDTO.bounds.northeast = new Northeast(50,50);
         geocodingDTO.results = new ArrayList<Result>(); 
         geocodingDTO.results.add(resultDTO);
 
@@ -155,7 +156,8 @@ public class WeatherServiceTests {
         GeocodingDTO geocodingDTO = new GeocodingDTO();
 
         Result resultDTO = new Result();
-        resultDTO.bounds = new Bounds(new Northeast(50,50) );
+        resultDTO.bounds = new Bounds();
+        resultDTO.bounds.northeast = new Northeast(50,50); 
         geocodingDTO.results = new ArrayList<Result>(); 
         geocodingDTO.results.add(resultDTO);
 

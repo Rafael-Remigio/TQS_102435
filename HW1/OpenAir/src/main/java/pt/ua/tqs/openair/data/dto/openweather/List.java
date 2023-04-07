@@ -5,5 +5,7 @@ public class List{
     public Main main;
     public Components components;
 
-    public List(){};
+    public List(){
+        //Empty just for testing porpuses
+    };
 }
