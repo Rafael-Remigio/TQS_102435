@@ -41,7 +41,7 @@
 
 \subsection{Overview of the work} 
 
-In this assignment the web application developed provides information about parameters related to air quality of a certain location.
+In this assignment the web application developed provides real-time information parameters related to the air quality of a certain location.
 
 \subsection{Current limitations} 
 
@@ -51,11 +51,26 @@ In this assignment the web application developed provides information about para
 
 \subsection{Functional scope and supported interactions }
 
+
+\subsubsection{Actors}
+
+Possible Actors of the proposed product:
+
+\begin{itemize}
+
+\item Individuals - People who want to check the air quality in their immediate surroundings, such as their home, office, or neighborhood.
+
+\item Public Health Officials - Officials who want to monitor air quality in a particular region or city to make informed decisions on public health policies.
+
+\end{itemize}
+
+
+\subsubsection{Use Cases}
 The WebApp provides two use cases:
 
 \begin{enumerate}
 
-\item  search for a specific location and receive Air Quality information. This information consists of the specific parameters: 
+\item  Real-time Air Quality Monitoring. Provides real-time air quality levels in a particular location. This information consists of the specific parameters: 
 	\begin{itemize}
 		\item Particulate Matter PM2.5
 		\item Particulate Matter PM10
@@ -76,7 +91,8 @@ The WebApp provides two use cases:
 \subsection{System architecture}
 
 \subsubsection{Architecture}
-
+The application's Architecture is very basic and allows for easy maintenance and API evolution. The Controller handles communication between the WebApp and the backend. The Service Layer is composed of two distinct services. The Weather Service (responsible for providing the Air Quality for a certain region) utilizes a Geocoding API in order to transform an address or location string into coordinates. It communicates with two different Air Quality API's. In order to provide more constant availability and resilience, one acts as a backup when the main API is down. These API's provide Air Quality data for a certain location based on latitude and longitude.
+In order to reduce query times, a caching system using a key-value database was also introduced. The objects cached have a specific Time to Live that is easily configurable.
 \includegraphics[scale=.4]{architecture.png}
 
 \subsubsection{Technologies and API's Used}
@@ -151,7 +167,9 @@ implemented and
 
 \subsection{Code quality analysis}
 
-SonarQube
+For static sode analysis I used throughout the entirety of the project the SonarQube platform. It helped me identify potential bugs and vulnerabilities, improve code my code quality, and find code smells and possible anti-patterns. In conjunction with with static code anylisis I also used the SonarQube platform in order to evaluate the code coverage of tests implemented.
+
+\includegraphics[scale=0.35]{sonarQube.png}
 
 \subsection{Continuous integration pipeline}
 

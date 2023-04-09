@@ -47,7 +47,7 @@ public class CacheService {
             }
             
         } catch (Exception e) {
-            LOGGER.error("Cache Failure: failed accessing cache" + e.toString());
+            LOGGER.error("Cache Failure: failed accessing cache" , e);
 
             return null;
         }

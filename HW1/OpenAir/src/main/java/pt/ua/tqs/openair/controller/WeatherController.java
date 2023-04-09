@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 
 
 @RestController
@@ -21,6 +22,7 @@ public class WeatherController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WeatherController.class);
 
+    Marker marker;
 
 
     @Autowired
@@ -32,7 +34,7 @@ public class WeatherController {
     ){
         try {
 
-            LOGGER.debug("Received a weather request for" + localString);
+            LOGGER.debug(marker,"Received a weather request for {}", localString);
             Location location = weatherService.getWeather(localString);
 
             if (location == null){

@@ -1,6 +1,7 @@
 package pt.ua.tqs.openair.service;
 
 import org.slf4j.Logger;
+import org.slf4j.Marker;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,10 +18,13 @@ import pt.ua.tqs.openair.data.model.Coords;
 import pt.ua.tqs.openair.data.model.Location;
 import pt.ua.tqs.openair.data.model.Stats;
 
+
 @Service
 public class WeatherService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(WeatherService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WeatherService.class);
+
+    Marker marker;
 
     @Autowired
     CacheService cacheService;
@@ -39,7 +43,6 @@ public class WeatherService {
 
     @Value("${app.openWeatherApiKey}")
     private String openWeatherApiKey;
-
 
     @Value("${app.airQualityOpenMeteo}")
     private String openMetoUrl;
@@ -69,7 +72,7 @@ public class WeatherService {
 
                 stats = getAirQualitySecondarySource(coords);
 
-                if (stats == null){
+                if (stats == null) {
 
                     LOGGER.error("OpenMeto Air Quality API did not respond");
 
@@ -109,7 +112,8 @@ public class WeatherService {
     }
 
     private Stats getAirQualitySecondarySource(Coords coords) {
-        String url = openMetoUrl + "latitude=" + coords.getLat() + "&longitude=" + coords.getLgn() + "&&hourly=pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone";
+        String url = openMetoUrl + "latitude=" + coords.getLat() + "&longitude=" + coords.getLgn()
+                + "&&hourly=pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone";
 
         try {
             OpenMetoStats opeMetoDTO = restTemplate.getForObject(url, OpenMetoStats.class);
@@ -118,9 +122,9 @@ public class WeatherService {
             }
 
             Hourly hourly = opeMetoDTO.hourly;
-            
 
-            Stats stats = new Stats(hourly.carbon_monoxide[0],hourly.nitrogen_dioxide[0], hourly.pm2_5[0], hourly.pm10[0]);
+            Stats stats = new Stats(hourly.carbon_monoxide[0], hourly.nitrogen_dioxide[0], hourly.pm2_5[0],
+                    hourly.pm10[0]);
             return stats;
         } catch (Exception e) {
             return null;
@@ -132,20 +136,19 @@ public class WeatherService {
 
         String url = geoCodingUrl + local + "&key=" + geoCodingApiKey + "&pretty=1&no_annotations=1&limit=1";
         try {
-        LOGGER.debug("getting geolocation from "+ url);
-        GeocodingDTO geocodingObj = restTemplate.getForObject(url, GeocodingDTO.class);
+            LOGGER.debug(marker, "Getting geolocation from {}",url);
+            GeocodingDTO geocodingObj = restTemplate.getForObject(url, GeocodingDTO.class);
 
-        if (geocodingObj == null) {
-            return null;
-        }
+            if (geocodingObj == null) {
+                return null;
+            }
 
-        Northeast APIcoords = geocodingObj.results.get(0).bounds.northeast;
+            Northeast APIcoords = geocodingObj.results.get(0).bounds.northeast;
 
-        Coords coords = new Coords(APIcoords.lat, APIcoords.lng);
-        return coords;
-        }
-        catch (Exception e) {
-            LOGGER.error(e.toString() + url);
+            Coords coords = new Coords(APIcoords.lat, APIcoords.lng);
+            return coords;
+        } catch (Exception e) {
+            LOGGER.error("Unable to reach " + url, e);
             return null;
         }
     }

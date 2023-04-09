@@ -14,6 +14,7 @@ import pt.ua.tqs.openair.data.CacheRepository;
 import pt.ua.tqs.openair.data.model.Location;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 //@DataJpaTest
 //@ExtendWith(SpringExtension.class)
@@ -55,7 +56,7 @@ class CacheRepositoryTests {
         }
         
         found = cacheRepository.findById(paris.getLocation());
-        assertThat( !(found.isPresent()));
+        assertFalse((found.isPresent()));
 
 
     }
