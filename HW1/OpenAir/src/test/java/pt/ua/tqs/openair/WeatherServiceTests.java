@@ -161,7 +161,6 @@ public class WeatherServiceTests {
     void testGetWeather_OpenWeatherApiNotResponding_MetoDoes() {
         // given
         String local = "London";
-        Mockito.when(cacheService.getLocation(local)).thenReturn(null);
 
         GeocodingDTO geocodingDTO = new GeocodingDTO();
 
@@ -186,6 +185,9 @@ public class WeatherServiceTests {
 
         String openMetoUrl = baseOpenMetoUrl + "latitude=" + coords.getLat() + "&longitude=" + coords.getLgn() + "&&hourly=pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone";
 
+        
+        Mockito.when(cacheService.getLocation(local)).thenReturn(null);
+        
         Mockito.when(restTemplate.getForObject(geocodingUrl, GeocodingDTO.class))
                 .thenReturn(geocodingDTO);
 

@@ -158,12 +158,33 @@ I followed logging principles and best practices - such as: logging at the corre
 
 \subsection{Overall strategy for testing}
 
+The overall strategy used was for testing was Test-driven development (TDD). The idea behind TDD is to ensure that the code meets the requirements and is free from defects by writing tests that define the expected behavior of the code. 
 
 \subsection{Unit and integration testing}
 
-implemented and 
+Unit Tests were used to test the individual units or components of the software application or system to ensure that they are functioning correctly. 
+\begin{itemize}
+\item Controller Tests: The goal of these tests is to ensure that the controller behaves correctly and produces the expected HTTP response. This involves creating mock objects for the multiple services that the controllers interact with.
+\includegraphics[scale=0.5]{ControllerMocks.png}
+\\
+\includegraphics[scale=0.45]{ControllerExample.png}
+\item Service Tests: The goal of these tests is to ensure that the Business Logic is implemented as expected. To achive this it is necessary to mock multiple components.
+	\begin{enumerate}
+		\item Mock the API calls
+		\item Mock the Redis Database
+		\item In the Weather Service tests it is also necessary to mock the Cache Service.
+	\end{enumerate}
+\includegraphics[scale=0.5]{ServiceMocks.png}\\
+\includegraphics[scale=0.5]{ServiceMocks2.png}\\
+Example of Mocks when \textit{"Location is not in cache but second API responds"}
+\includegraphics[scale=0.5]{ServiceWhen.png}
 
-\subsection{Functional testing}
+\item Repository Tests: The goal of these tests is to ensure that the Database behaves as expected.
+
+\includegraphics[scale=0.5]{CacheTest.png}
+
+
+\end{itemize}
 
 \subsection{Code quality analysis}
 

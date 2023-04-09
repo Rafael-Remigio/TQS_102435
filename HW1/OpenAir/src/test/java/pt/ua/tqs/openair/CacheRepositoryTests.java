@@ -50,9 +50,8 @@ class CacheRepositoryTests {
         assertThat( found.get() ).isEqualTo(paris);
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(7000);
         } catch (Exception e) {
-            // TODO: handle exception
         }
         
         found = cacheRepository.findById(paris.getLocation());
