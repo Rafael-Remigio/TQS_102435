@@ -1,6 +1,5 @@
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Overview of the work}{1}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Current limitations}{1}{subsection.1.2}%
 \contentsline {section}{\numberline {2}Product specification}{1}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Functional scope and supported interactions }{1}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}Actors}{1}{subsubsection.2.1.1}%
@@ -13,5 +12,6 @@
 \contentsline {subsection}{\numberline {3.1}Logging}{4}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Overall strategy for testing}{5}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Unit and integration testing}{5}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Code quality analysis}{7}{subsection.3.4}%
-\contentsline {section}{\numberline {4}References \& resources}{8}{section.4}%
+\contentsline {subsection}{\numberline {3.4}Code quality analysis}{8}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Continuous Integration Pipeline}{9}{subsubsection.3.4.1}%
+\contentsline {section}{\numberline {4}References \& resources}{9}{section.4}%

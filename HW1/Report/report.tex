@@ -41,11 +41,8 @@
 
 \subsection{Overview of the work} 
 
-In this assignment the web application developed provides real-time information parameters related to the air quality of a certain location.
+In this assignment, the web application developed provides real-time information parameters related to the air quality of a certain location.
 
-\subsection{Current limitations} 
-
-I was not able to implement a Continuous Integrationg Pipeline with a tool such as GitHub Action.
 
 \section{Product specification}
 
@@ -98,7 +95,7 @@ In order to reduce query times, a caching system using a key-value database was 
 
 \subsubsection{Technologies and API's Used}
 
-The very basic User Interface was constructed using ReactJS. It interacts with the Backedn througth a RestAPI. The backend was built using Spring Boot. For an in memory database I used Redis. The Geolocation Api chosen was Open Cage. The primary Air Quality API is the OpenWeather API. The backup Air Quality API is the OpenMeteo API.
+The very basic User Interface was constructed using ReactJS. It interacts with the Backedn througth a RestAPI. The backend was built using Spring Boot. For an in memory database I used Redis. The Geolocation API chosen was Open Cage. The primary Air Quality API is the OpenWeather API. The backup Air Quality API is the OpenMeteo API.
 
 \includegraphics[scale=.4]{TechFrameworks.png}
 
@@ -155,7 +152,7 @@ The API has two endpoints:
 Logging is a crucial aspect of software development that plays a vital role in supporting production and debugging activities. \\
 Logging was conducted using the slf4j Logger class has it provides an easy integration with the Spring Boot Application.\\
 Each log message contains a timestamp, method invocation details, custom log messages, and other contextual data. Additionally, each log entry is assigned a logging level identifier, providing a way to categorize and prioritize log entries based on their significance.\\
-I followed logging principles and best practices - such as: logging at the correct evel, providing meaningfull messages, etc - in order to provide meaningfull logs.
+I followed logging principles and best practices - such as: logging at the correct level, providing meaningful messages, etc. - in order to provide useful logs.
 
 \subsection{Overall strategy for testing}
 
@@ -169,14 +166,15 @@ Unit Tests were used to test the individual units or components of the software 
 \includegraphics[scale=0.5]{ControllerMocks.png}
 \\
 \includegraphics[scale=0.45]{ControllerExample.png}
-\item Service Tests: The goal of these tests is to ensure that the Business Logic is implemented as expected. To achive this it is necessary to mock multiple components.
+\item Service Tests: The goal of these tests is to ensure that the Business Logic is implemented as expected. To achieve this, it is necessary to mock multiple components.
 	\begin{enumerate}
 		\item Mock the API calls
 		\item Mock the Redis Database
 		\item In the Weather Service tests it is also necessary to mock the Cache Service.
 	\end{enumerate}
-\includegraphics[scale=0.5]{ServiceMocks.png}\\
-\includegraphics[scale=0.5]{ServiceMocks2.png}\\
+\includegraphics[scale=0.5]{ServiceMocks.png}
+\includegraphics[scale=0.5]{ServiceMocks2.png}
+\clearpage
 Example of Mocks when \textit{"Location is not in cache but second API responds"}
 \includegraphics[scale=0.5]{ServiceWhen.png}
 
@@ -184,15 +182,22 @@ Example of Mocks when \textit{"Location is not in cache but second API responds"
 
 \includegraphics[scale=0.5]{CacheTest.png}
 
-\item User Inteface Testing - To automate tests of the Web Application I used the Selenium WebDriver in conjunction with the Selenium IDE. 
+\item User Interface Testing - To automate tests of the Web Application, I used the Selenium WebDriver in conjunction with the Selenium IDE. 
 \end{itemize}
-
+\clearpage
 \subsection{Code quality analysis}
 
-For static sode analysis I used throughout the entirety of the project the SonarQube platform. It helped me identify potential bugs and vulnerabilities, improve code my code quality, and find code smells and possible anti-patterns. In conjunction with with static code anylisis I also used the SonarQube platform in order to evaluate the code coverage of tests implemented.
+For static code analysis, I used throughout the entirety of the project the SonarQube platform. It helped me identify potential bugs and vulnerabilities, improve code my code quality, and find code smells and possible antipatterns. In conjunction with static code analysis, I also used the SonarQube platform in order to evaluate the code coverage of tests implemented.
 
 \includegraphics[scale=0.35]{sonarQube.png}
+\clearpage
+\subsubsection{Continuous Integration Pipeline}
 
+A continuous integration (CI) pipeline is a process where code changes are automatically built, tested, and deployed to a target environment. GitHub Actions is a powerful platform for implementing a continuous integration pipeline. By defining the build, test, and deploy steps in the workflow file, the process of building, testing, and deploying your code changes can be automated.
+
+\begin{center}
+\includegraphics[scale=0.6]{CompleteIntegration.png}
+\end{center}
 
 \section{References \& resources}
 

@@ -86,4 +86,30 @@ public class InterfaceTests {
 
           assertThat(driver.switchTo().alert().getText(), is("Service Unavailable, try again later"));
   }
+
+  @Test
+  public void getCacheInfo() {
+    driver.get("http://localhost:3000/");
+    driver.findElement(By.cssSelector("button")).click();
+    try {
+      Thread.sleep(500);
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    assertThat(driver.findElement(By.cssSelector("h5")).getText(), is("Cache Info"));
+    {
+      List<WebElement> elements = driver.findElements(By.cssSelector("p:nth-child(2)"));
+      assert(elements.size() > 0);
+    }
+    {
+      List<WebElement> elements = driver.findElements(By.cssSelector("p:nth-child(3)"));
+      assert(elements.size() > 0);
+    }
+    {
+      List<WebElement> elements = driver.findElements(By.cssSelector("p:nth-child(4)"));
+      assert(elements.size() > 0);
+    }
+  }
+  
 }
