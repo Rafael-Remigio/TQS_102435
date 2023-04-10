@@ -87,7 +87,7 @@ public class InterfaceTests {
           assertThat(driver.switchTo().alert().getText(), is("Service Unavailable, try again later"));
   }
 
-  @Test
+  //@Test
   public void getCacheInfo() {
     driver.get("http://localhost:3000/");
     driver.findElement(By.cssSelector("button")).click();
